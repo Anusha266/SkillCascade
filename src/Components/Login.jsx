@@ -13,12 +13,12 @@ const Login = () => {
         e.preventDefault();
         setError("");
         try {
-            await auth.signInWithEmailAndPassword(email, password);
-            navigate("/");
+            
         } catch (err) {
             setError("Invalid credentials. Please try again.");
         }
     };
+
     return (
         
         <div className="flex min-h-screen items-center justify-center bg-[url('./../public/introBack.webp')] md:bg-center bg-no-repeat p-4">

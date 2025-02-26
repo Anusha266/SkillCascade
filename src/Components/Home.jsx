@@ -3,8 +3,9 @@ import { useUser } from "../App";
 import { doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../Database/fb";
 import { motion } from "framer-motion";
+import Navigation from "./Navigation";
 
-const Dashboard = () => {
+const Home = () => {
   const { presentUser } = useUser(); 
   const [userData, setUserData] = useState(null); 
 
@@ -39,32 +40,10 @@ const Dashboard = () => {
       initial={{ y: -200, opacity: 0 }} 
       animate={{ y: 0, opacity: 1 }} 
       transition={{ duration: 0.6 }}
-      className="p-4"
     >
-      <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
-      {userData ? (
-        <div className="mb-4">
-          <p>
-            <strong>Name:</strong> {userData.fullName}
-          </p>
-          <p>
-            <strong>Email:</strong> {userData.email}
-          </p>
-        </div>
-      ) : (
-        <p>Loading user data...</p>
-      )}
-
-      <motion.button 
-        whileHover={{ scale: 1.1, backgroundColor: "black" }} 
-        transition={{ duration: 0.3 }} 
-        className="mt-5 bg-gray-800 text-white px-4 py-2 rounded hover:cursor-pointer outline outline-offset-8 hover:bg-gray-700"
-        onClick={() => auth.signOut()}
-      >
-        Logout
-      </motion.button>
+      <Navigation />
     </motion.div>
   );
 };
 
-export default Dashboard;
+export default Home;

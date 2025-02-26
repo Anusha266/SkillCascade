@@ -3,6 +3,7 @@ import { auth, db } from "../../Database/fb";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import GoogleAuthButton from './GoogleAuthButton';
+import axios from "axios";
 
 const Signup = () => {
     const [fullName, setFullName] = useState("");
@@ -11,18 +12,17 @@ const Signup = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+
     const handleSignup = async (e) => {
         e.preventDefault();
         setError("");
         try {
-            const user = await auth.createUserWithEmailAndPassword(email, password);
-            await db.collection("users").doc(user.user.uid).set({
-                fullName,
-                email,
-                password,
+            const response = await axios.post(import.meta.env.VITE_SIGNUP_API,{
+                name : fullName,
+                email : email,
+                password : password
             });
-            
-            navigate("/");
+            console.log(response.data);
         } catch (err) {
             setError(err.message);
         }

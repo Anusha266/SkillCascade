@@ -2,7 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 .bgcolor{
-  background-color:  #281549;
+  background-color:  #2A0949;
+}
+
+.bannerbg{
+  background-image: linear-gradient(to right, #D4CBE3, #B090E4);
 }
 
 body {
